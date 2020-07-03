@@ -134,7 +134,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
 
   </li>
   </ul>
@@ -179,7 +179,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -224,6 +224,100 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dongyiwei123.github.io/2020/07/03/==%20%E5%92%8C%20===%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="董毅威">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dyw的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/03/==%20%E5%92%8C%20===%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" class="post-title-link" itemprop="url">== 和 === 有什么区别？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-03 20:51:11 / 修改时间：20:52:49" itemprop="dateCreated datePublished" datetime="2020-07-03T20:51:11+08:00">2020-07-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="和-有什么区别？"><a href="#和-有什么区别？" class="headerlink" title="== 和 === 有什么区别？"></a>== 和 === 有什么区别？</h3><p><code>===</code>不需要进行类型转换，只有类型相同并且值相等时，才返回 true.</p>
+<p><code>==</code>如果两者类型不同，首先需要进行类型转换。具体流程如下:</p>
+<ol>
+<li>首先判断两者类型是否相同，如果相等，判断值是否相等.</li>
+<li>如果类型不同，进行类型转换</li>
+<li>判断比较的是否是 null 或者是 undefined, 如果是, 返回 true .</li>
+<li>判断两者类型是否为 string 和 number, 如果是, 将字符串转换成 number</li>
+<li>判断其中一方是否为 boolean, 如果是, 将 boolean 转为 number 再进行判断</li>
+<li>判断其中一方是否为 object 且另一方为 string、number 或者 symbol , 如果是, 将 object 转为原始类型再进行判断</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person1 = &#123;</span><br><span class="line">    age: <span class="number">25</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person2 = person1;</span><br><span class="line">person2.gae = <span class="number">20</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person1 === person2); <span class="comment">//true,注意复杂数据类型，比较的是引用地址</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p> 思考：<code>[] == ![]</code> 是true还是false？ </p>
+<ol>
+<li><p>首先，我们需要知道 ! 优先级是高于 ==</p>
+</li>
+<li><p><code>![]</code> 引用类型转换成布尔值都是true,因此<code>![]</code>的是false</p>
+</li>
+<li><p>根据上面的比较步骤中的第五条，其中一方是 boolean，将 boolean 转为 number 再进行判断，false转换成 number，对应的值是 0.</p>
+</li>
+<li><p>根据上面比较步骤中的第六条，有一方是 number，那么将object也转换成Number,空数组转换成数字，对应的值是0.(空数组转换成数字，对应的值是0，如果数组中只有一个数字，那么转成number就是这个数字，其它情况，均为NaN)</p>
+</li>
+<li><p>0 == 0; 为true</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
