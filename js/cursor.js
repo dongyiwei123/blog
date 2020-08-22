@@ -1,4 +1,4 @@
-(function cherry() {
+(function fairyDustCursor() {
   var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"];
   var width = window.innerWidth;
   var height = window.innerHeight;
@@ -9,6 +9,7 @@
     bindEvents();
     loop();
   }
+
   // Bind events that are needed
   function bindEvents() {
     document.addEventListener("mousemove", onMouseMove);
@@ -17,10 +18,12 @@
 
     window.addEventListener("resize", onWindowResize);
   }
+
   function onWindowResize(e) {
     width = window.innerWidth;
     height = window.innerHeight;
   }
+
   function onTouchMove(e) {
     if (e.touches.length > 0) {
       for (var i = 0; i < e.touches.length; i++) {
@@ -32,6 +35,7 @@
       }
     }
   }
+
   function onMouseMove(e) {
     cursor.x = e.clientX;
     cursor.y = e.clientY;
@@ -42,15 +46,18 @@
       possibleColors[Math.floor(Math.random() * possibleColors.length)]
     );
   }
+
   function addParticle(x, y, color) {
     var particle = new Particle();
     particle.init(x, y, color);
     particles.push(particle);
   }
+
   function updateParticles() {
     for (var i = 0; i < particles.length; i++) {
       particles[i].update();
     }
+
     for (var i = particles.length - 1; i >= 0; i--) {
       if (particles[i].lifeSpan < 0) {
         particles[i].die();
@@ -58,10 +65,12 @@
       }
     }
   }
+
   function loop() {
     requestAnimationFrame(loop);
     updateParticles();
   }
+
   function Particle() {
     this.character = "*";
     this.lifeSpan = 120; //ms
@@ -74,11 +83,13 @@
       fontSize: "20px",
       "will-change": "transform",
     };
+
     this.init = function (x, y, color) {
       this.velocity = {
         x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
         y: 1,
       };
+
       this.position = { x: x - 10, y: y - 20 };
       this.initialStyles.color = color;
       console.log(color);
@@ -90,10 +101,12 @@
 
       document.body.appendChild(this.element);
     };
+
     this.update = function () {
       this.position.x += this.velocity.x;
       this.position.y += this.velocity.y;
       this.lifeSpan--;
+
       this.element.style.transform =
         "translate3d(" +
         this.position.x +
@@ -103,14 +116,17 @@
         this.lifeSpan / 120 +
         ")";
     };
+
     this.die = function () {
       this.element.parentNode.removeChild(this.element);
     };
   }
+
   function applyProperties(target, properties) {
     for (var key in properties) {
       target.style[key] = properties[key];
     }
   }
+
   init();
 })();
