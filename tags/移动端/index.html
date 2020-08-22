@@ -403,16 +403,6 @@ document.addEventListener('pjax:success', () => {
   
 
     </div>
-  这里因为包含标签，显示不出来，就把{},换成[]，记得改过来
-[%- if theme.cursor_effect %]
-  [%- if theme.cursor_effect.type == "explosion" %]
-    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
-    <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-    <script src="/js/cursor/explosion.min.js"></script>
-  [%- elseif theme.cursor_effect.type == "cherry" %]
-    <script src="/js/cursor/cherry.js"></script>
-  [%- endif %]
-[%- endif %]
   
   <!--动态背景-->
   <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
